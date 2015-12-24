@@ -27,9 +27,18 @@ RUN cat catalina.policy.append >> conf/catalina.policy &&\
 
 # copy the keycloak configs to tomcat		
 COPY ./keycloak-jars/* /usr/local/tomcat/lib/
+# these two are provided by the Keycloak adapter in /usr/local/tomcat/lib
+#RUN rm /usr/local/tomcat/webapps/ROOT/WEB-INF/lib/bcpix-jdk15on-* /usr/local/tomcat/webapps/ROOT/WEB-INF/lib/bcprov-jdk15on-*
+COPY ./keycloak.json /usr/local/tomcat/webapps/ROOT/WEB-INF/
 COPY ./context.xml /usr/local/tomcat/webapps/ROOT/META-INF/
 COPY ./web.xml /usr/local/tomcat/webapps/ROOT/WEB-INF/
-COPY ./keycloak.json /usr/local/tomcat/webapps/ROOT/WEB-INF/
 COPY ./xwiki.cfg /usr/local/tomcat/webapps/ROOT/WEB-INF/
 #COPY ./hibernate.cfg.xml /usr/local/tomcat/webapps/ROOT/WEB-INF/
+COPY ./xwiki-authenticator-keycloak.jar /usr/local/tomcat/webapps/ROOT/WEB-INF/lib
+
+# change authenticator logging level (optional)
+RUN echo '\norg.keycloak.adapters.OAuthRequestAuthenticator.level = FINE\n' >> /usr/local/tomcat/conf/logging.properties
+
+# change adapter logging level (optional)
+COPY ./logback.xml /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/
 

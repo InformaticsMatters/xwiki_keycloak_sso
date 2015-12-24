@@ -1,12 +1,16 @@
 ## Introduction
-This sets up a simple test environment for using the Keycloak SSO solution with XWiki.
+This sets up a simple Dockerised test environment for using the Keycloak SSO solution with XWiki.
 All the docker related action is in the xwiki-site directory.
 
+See the [Git Hub project](https://github.com/tdudgeon/xwiki_authenticator_keycloak) for details of the authenticator.
+
 IMPORTANT: this setup assumes that the docker host ip address is 192.168.59.103.
-If you have a different ip then you will need to make changes to (at least) the keycloak.json files and the Valid Redirect URIs for the sampleapp and xwiki clients in the squonk realm of keycloak. In a production setup permanent DNS names should be in use and avoid this problem.
+If you have a different ip then you will need to make changes to (at least) the keycloak.json files and the Valid Redirect 
+URIs for the sampleapp and xwiki clients in the squonk realm of keycloak. In a production setup permanent DNS names should
+be in use and avoid this problem.
 
 Versions:
-Keycloak 1.7.3
+Keycloak 1.7.0
 XWiki 7.3
 Note: the bouncy castle jar versions in keycloak and xwiki conflict. See wiki-site/xwiki/keycloak-jars/README.txt
 
@@ -31,10 +35,12 @@ If your docker host is not 192.168.59.103 (and it probably not) then you need to
 You can do this in one command like this:
 
 ``` sh
-sed 's/192.168.59.103/localhost/g' squonk-realm.json > yyy.json
+sed 's/192.168.59.103/1.2.3.4/g' squonk-realm.json > yyy.json
 ```
 
-(replacing localhost with the name/ip of your docker host)
+(replacing 1.2.3.4 with the name/ip of your docker host).
+NOTE: do NOT use localhost (it means different things inside and outside the container). If docker host is running on
+localhost the specify the Docker gateway address.
 
 Import the realm definition with this:
 
@@ -54,10 +60,16 @@ Now start the whole stack:
 docker-compose up -d
 ```
 
-Access sampleapp at: http://192.168.59.103:9080/sampleapp/index.html
-Access xwiki at:     http://192.168.59.103/
-Access keycloak at:  http://192.168.59.103:8080/
+Access XWiki at:     http://192.168.59.103/
+Access Keycloak at:  http://192.168.59.103:8080/
 (change ip address as needed).
+
+When you first access XWiki you will be taken through the installation process.
+
+Check the Keycloak authentication is working corectly by trying to log in. You should see the Keycloak login screen and 
+can log in user user1/user1.
+
+After completing this you should tighten down security as you see fit.
 
 ## Other info
 
