@@ -29,3 +29,4 @@ xwiki:
 #    - postgres:postgres
     environment:
     - KEYCLOAK_SERVER_URL
+

@@ -37,7 +37,7 @@
       "composite" : false
     }, {
       "id" : "dccb5e84-be9d-4ac5-8cbe-7b22d5938419",
-      "name" : "Wiki.XWikiAllGroup",
+      "name" : "XWiki.XWikiAllGroup",
       "scopeParamRequired" : false,
       "composite" : false
     }, {
@@ -202,7 +202,7 @@
       "temporary" : false
     } ],
     "requiredActions" : [ ],
-    "realmRoles" : [ "Wiki.XWikiAllGroup", "standard-user" ],
+    "realmRoles" : [ "XWiki.XWikiAllGroup", "standard-user" ],
     "clientRoles" : {
       "account" : [ "view-profile", "manage-account" ]
     }
@@ -223,7 +223,7 @@
       "temporary" : false
     } ],
     "requiredActions" : [ ],
-    "realmRoles" : [ "Wiki.XWikiAllGroup", "standard-user" ],
+    "realmRoles" : [ "XWiki.XWikiAllGroup", "standard-user" ],
     "clientRoles" : {
       "account" : [ "view-profile", "manage-account" ]
     }
