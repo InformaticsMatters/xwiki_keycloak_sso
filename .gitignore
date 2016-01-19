@@ -3,5 +3,6 @@ build
 .idea
 *.iml
 xwiki-site/yyy.json
+xwiki-site/setenv.sh
 **/*~
 
