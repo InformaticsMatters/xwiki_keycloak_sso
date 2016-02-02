@@ -40,5 +40,5 @@ COPY ./xwiki-authenticator-keycloak.jar /usr/local/tomcat/webapps/ROOT/WEB-INF/l
 #RUN echo '\norg.keycloak.adapters.OAuthRequestAuthenticator.level = FINE\n' >> /usr/local/tomcat/conf/logging.properties
 
 # change adapter logging level (optional)
-COPY ./logback.xml /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/
+#COPY ./logback.xml /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/
 
