@@ -35,7 +35,7 @@ If your docker host is not 192.168.59.103 (and it probably not) then you need to
 You can do this in one command like this:
 
 ``` sh
-sed 's/192.168.59.103/1.2.3.4/g' squonk-realm.json > yyy.json
+sed 's/__server_name__/1.2.3.4/g' squonk-realm.json > yyy.json
 ```
 
 (replacing 1.2.3.4 with the name/ip of your docker host).
@@ -45,7 +45,7 @@ localhost the specify the Docker gateway address.
 Import the realm definition with this:
 
 ```sh
-docker run -it --link xwikisite_postgres_1:postgres -e POSTGRES_DATABASE=keycloak -e POSTGRES_USER=keycloak -e POSTGRES_PASSWORD=keycloak --rm -v $PWD:/tmp/json jboss/keycloak-postgres /opt/jboss/keycloak/bin/standalone.sh -b 0.0.0.0 -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/tmp/json/squonk-realm.json -Dkeycloak.migration.strategy=OVERWRITE_EXISTING
+docker run -it --link xwikisite_postgres_1:postgres -e POSTGRES_DATABASE=keycloak -e POSTGRES_USER=keycloak -e POSTGRES_PASSWORD=keycloak --rm -v $PWD:/tmp/json jboss/keycloak-postgres:1.9.1.Final -b 0.0.0.0 -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/tmp/json/squonk-realm.json -Dkeycloak.migration.strategy=OVERWRITE_EXISTING
 ```
 
 (replace squonk-realm.json with yyy.json if you performed the edit at the start of this section)
@@ -57,7 +57,7 @@ Then Ctrl-C to terminate once started.
 ### 4 Fire up all containers
 Now start the whole stack:
 ```sh  
-docker-compose up -d
+docker-compose up -d --no-recreate
 ```
 
 Access XWiki at:     http://192.168.59.103/

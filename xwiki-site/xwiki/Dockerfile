@@ -1,10 +1,10 @@
-FROM tomcat:7
+FROM tomcat:8-jre8
 MAINTAINER Tim Dudgeon <tdudgeon@informaticsmatters.com> 
 # based on the hellyna/xwiki dockerhub image by Hellyna NG <hellyna@hellyna.com>
 
 RUN rm -rf webapps/* &&\
  curl -L\
- 'http://download.forge.ow2.org/xwiki/xwiki-enterprise-web-7.3.war'\
+ 'http://download.forge.ow2.org/xwiki/xwiki-enterprise-web-7.4.2.war'\
  -o xwiki.war &&\
  unzip -d webapps/ROOT xwiki.war &&\
  rm -f xwiki.war
@@ -37,8 +37,8 @@ COPY ./xwiki.cfg /usr/local/tomcat/webapps/ROOT/WEB-INF/
 COPY ./xwiki-authenticator-keycloak.jar /usr/local/tomcat/webapps/ROOT/WEB-INF/lib
 
 # change authenticator logging level (optional)
-#RUN echo '\norg.keycloak.adapters.OAuthRequestAuthenticator.level = FINE\n' >> /usr/local/tomcat/conf/logging.properties
+RUN echo '\norg.keycloak.adapters.OAuthRequestAuthenticator.level = FINE\n' >> /usr/local/tomcat/conf/logging.properties
 
 # change adapter logging level (optional)
-#COPY ./logback.xml /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/
+COPY ./logback.xml /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/
 

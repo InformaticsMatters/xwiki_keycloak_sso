@@ -1,4 +1,4 @@
-FROM jboss/keycloak-postgres
+FROM jboss/keycloak-postgres:1.9.1.Final
 MAINTAINER Tim Dudgeon <tdudgeon@informaticsmatters.com>
 
 
