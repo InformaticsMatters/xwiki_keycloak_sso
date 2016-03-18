@@ -10,9 +10,8 @@ URIs for the sampleapp and xwiki clients in the squonk realm of keycloak. In a p
 be in use and avoid this problem.
 
 Versions:
-Keycloak 1.7.0
-XWiki 7.3
-Note: the bouncy castle jar versions in keycloak and xwiki conflict. See wiki-site/xwiki/keycloak-jars/README.txt
+Keycloak 1.9.1.Final
+XWiki 7.4.2
 
 ## Building
 ### 1 Setup
